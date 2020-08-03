@@ -12,12 +12,14 @@ class Counter extends React.Component{
         this.setState((preState)=>(
            {number: preState.number+1} 
         ))
+        this.props.parent.getCount(this,1)
     }
 
     decrease = () => {
         this.setState({
             number: this.state.number-1
         })
+        this.props.parent.getMinusCount(this,1)
     }
 
     render(){
