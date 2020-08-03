@@ -8,6 +8,14 @@ class Counter extends React.Component{
         }
     }
 
+    componentWillReceiveProps = (nextProps) => {
+        if(nextProps.number!=null){
+            this.setState({
+                number: nextProps.number
+            })
+        }
+    }
+
     increase = () => {
         this.setState((preState)=>(
            {number: preState.number+1} 

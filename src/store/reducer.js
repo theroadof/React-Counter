@@ -1,4 +1,6 @@
 import {INPUT_NUMBER_OF_COUNTER,TOTAL_MINUS_1,TOTAL_PLUS_1} from './actionTypes'
+import Counter from '../Components/Counter/index';
+import React from 'react';
 
 const defaultState = {number:0,total:0} 
 export default (state = defaultState,action)=>{

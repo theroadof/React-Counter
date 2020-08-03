@@ -9,7 +9,8 @@ class CounterGroup extends React.Component{
         this.setNumber = this.setNumber.bind(this)
         this.state = {
             number: 0,
-            total: 0
+            total: 0,
+            counters:[]
         }
         store.subscribe(this.storeChange)
     }
@@ -33,6 +34,10 @@ class CounterGroup extends React.Component{
         if(!isNaN(value)){
             const action = inputNumber(value)
             store.dispatch(action)
+            this.setState({
+                counters: (new Array(value).fill(0)
+                    .map((value,index)=>(<Counter number={0} parent={this} key={index}/>)))
+            })
         }else{
             alert("error input!")
         }
@@ -44,8 +49,7 @@ class CounterGroup extends React.Component{
                 Number Of Counters: <input type='text' onChange={this.setNumber} defaultValue={this.state.number}></input>
                 <br/>
                 <div>Total:{this.state.total}</div>
-                {new Array(this.state.number).fill(0).map((value,index)=>(<Counter parent={this} key={index}/>))}
-
+                {this.state.counters}
             </div>
         )
     }
