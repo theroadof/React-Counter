@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 import Counter from '../Counter';
+import {inputNumber} from '../../store/actionCreators';
+import store from '../../store';
 
 class CounterGroup extends React.Component{
     constructor(props){
@@ -9,6 +11,11 @@ class CounterGroup extends React.Component{
             number: 0,
             total: 0
         }
+        store.subscribe(this.storeChange)
+    }
+
+    storeChange=()=>{
+        this.setState(store.getState())
     }
 
     getCount=(result,number)=>{
@@ -26,10 +33,8 @@ class CounterGroup extends React.Component{
     setNumber(number){
         var value = Number(number.target.value)
         if(!isNaN(value)){
-            this.setState({
-                number: value,
-                total: 0
-            })
+            const action = inputNumber(value)
+            store.dispatch(action)
         }else{
             alert("error input!")
         }
