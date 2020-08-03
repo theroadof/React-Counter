@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import Counter from '../Counter';
-import {inputNumber} from '../../store/actionCreators';
+import {inputNumber,totalPlus,totalMinus} from '../../store/actionCreators';
 import store from '../../store';
 
 class CounterGroup extends React.Component{
@@ -19,15 +19,13 @@ class CounterGroup extends React.Component{
     }
 
     getCount=(result,number)=>{
-        this.setState({
-            total: this.state.total+number
-        })
+        const action = totalPlus()
+        store.dispatch(action)
     }
 
     getMinusCount=(result,number)=>{
-        this.setState({
-            total: this.state.total-number
-        })
+        const action = totalMinus()
+        store.dispatch(action)
     }
 
     setNumber(number){
