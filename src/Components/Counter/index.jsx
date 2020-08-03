@@ -1,44 +1,42 @@
 import React from 'react'
 
-class Counter extends React.Component{
-    constructor(props) {
-        super(props)
-        this.state={
-            number: 0
-        }
-    }
+class Counter extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			number: 0,
+		}
+	}
 
-    componentWillReceiveProps = (nextProps) => {
-        if(nextProps.number!=null){
-            this.setState({
-                number: nextProps.number
-            })
-        }
-    }
+	componentWillReceiveProps = (nextProps) => {
+		if (nextProps.number != null) {
+			this.setState({
+				number: nextProps.number,
+			})
+		}
+	}
 
-    increase = () => {
-        this.setState((preState)=>(
-           {number: preState.number+1} 
-        ))
-        this.props.parent.getCount(this,1)
-    }
+	increase = () => {
+		this.setState((preState) => ({ number: preState.number + 1 }))
+		this.props.parent.getCount(this, 1)
+	}
 
-    decrease = () => {
-        this.setState({
-            number: this.state.number-1
-        })
-        this.props.parent.getMinusCount(this,1)
-    }
+	decrease = () => {
+		this.setState({
+			number: this.state.number - 1,
+		})
+		this.props.parent.getMinusCount(this, 1)
+	}
 
-    render(){
-        return(
-            <div>
-                <button onClick={this.increase}>+</button>
-                <mark>{this.state.number}</mark>
-                <button onClick={this.decrease}>-</button>
-            </div>
-        );
-    }
+	render() {
+		return (
+			<div>
+				<button onClick={this.increase}>+</button>
+				<mark>{this.state.number}</mark>
+				<button onClick={this.decrease}>-</button>
+			</div>
+		)
+	}
 }
 
-export default Counter;
+export default Counter
