@@ -46,7 +46,7 @@ class CounterGroup extends React.Component {
                     defaultValue={this.state.number}
                 ></input>
                 <br />
-                <div>Total:{this.state.total}</div>
+                <div>Total:{this.props.total}</div>
                 {this.state.counters}
             </div>
         )

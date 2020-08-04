@@ -1,26 +1,21 @@
 import { connect } from "react-redux"
 import CounterGroup from "../../Components/CounterGroup"
 import { inputNumber, totalMinus, totalPlus } from '../../store/action/actionCreators'
-import { bindActionCreators } from "redux"
 
 const mapStateToProps = (state) => {
     return {
-        number: state.number,
-        total: state.total
+        number: state.counterReducer.number,
+        total: state.counterReducer.total
     }
-
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatch: dispatch,
-        inputNumber: (number) => {
-            bindActionCreators(inputNumber(number),dispatch) 
-        },
-        totalPlus: () => { bindActionCreators(totalPlus(),dispatch) },
-        totalMinus: () => { bindActionCreators(totalMinus(),dispatch) }
+        inputNumber: (number) => (dispatch(inputNumber(number))),
+        totalPlus: () => (dispatch(totalPlus())),
+        totalMinus: () => (dispatch(totalMinus()))
     }
 }
 
-const CounterGroupContainer = connect(mapDispatchToProps, mapStateToProps)(CounterGroup)
+const CounterGroupContainer = connect(mapStateToProps, mapDispatchToProps)(CounterGroup)
 export default CounterGroupContainer;
